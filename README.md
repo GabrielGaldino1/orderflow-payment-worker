@@ -1,13 +1,21 @@
 # OrderFlow Payment Worker
 
-Quarkus application responsible for payment processing, provider integration, and secure webhook handling.
+Quarkus application that will process payments, integrate with the provider, and receive signed webhooks.
 
-## Planned foundation
+## F02 foundation
 
 - Java 17 and Maven Wrapper.
-- Quarkus health checks, Hibernate ORM with Panache, PostgreSQL, Kafka, and REST Client.
-- Liveness and readiness endpoints.
-- Database migrations and Testcontainers integration tests.
+- Quarkus Health, Hibernate ORM with Panache, PostgreSQL, Flyway, Kafka client, and REST Client.
+- Owned PostgreSQL database configured only through environment variables.
+- Liveness at `/q/health/live` and readiness at `/q/health/ready`.
+- Foundation health tests backed by an in-memory PostgreSQL-compatible H2 profile.
 
-Application generation is intentionally deferred to the next Phase 1 block.
+No Kafka consumer, provider call, webhook endpoint, or payment domain table is implemented in F02.
 
+## Build and test
+
+```powershell
+./mvnw.cmd clean verify
+```
+
+Local runtime variables and orchestration commands are documented in `orderflow-platform`.
