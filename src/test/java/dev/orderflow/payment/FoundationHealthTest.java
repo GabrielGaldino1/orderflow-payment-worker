@@ -27,4 +27,12 @@ class FoundationHealthTest {
                 .statusCode(200)
                 .body("status", is("UP"));
     }
+
+    @Test
+    void exposesOutboxMetricsEndpoint() {
+        given()
+                .when().get("/q/metrics")
+                .then()
+                .statusCode(200);
+    }
 }
